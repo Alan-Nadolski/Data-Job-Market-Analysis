@@ -1,0 +1,8 @@
+.ipynb_checkpoints/
+logs/
+__pycache__/
+.venv/
+venv/
+*.duckdb
+*.parquet
+.JupyterNotebook_Linkedin.ipynb

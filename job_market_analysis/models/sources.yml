@@ -1,0 +1,7 @@
+sources:
+  - name: external_source
+    config:
+      meta:
+        external_location: "read_parquet('C:/Users/Alan/Documents/Danish Job Market Analysis/job_market_analysis/raw_data/*.parquet', filename=True)"
+    tables: 
+    - name: ads

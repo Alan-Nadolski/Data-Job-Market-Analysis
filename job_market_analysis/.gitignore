@@ -1,0 +1,6 @@
+raw_data/
+target/
+logs/
+dbt_packages/
+*.duckdb
+*.parquet
