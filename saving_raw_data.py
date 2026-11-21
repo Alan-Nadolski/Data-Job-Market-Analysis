@@ -20,19 +20,36 @@ headers = {
     'x-csrf': '1',
 }
 
-params = {
-    'resultsPerPage': '100',
-    'pageNumber': '1',
-    'orderType': 'BestMatch',
-    'kmRadius': '50',
-    'searchString': 'Data analyse',
-}
+queries = [
+    "Data analyse",
+    "studentermedhjælper data",
+    "studentermedhjælper analyse",
+    "student data analyst",
+    "junior data analyst",
+    "data intern",
+    "junior Python",
+    "data scientist",
+    "data engineer",
+    "business intelligence",
+    "machine learning",
+    "SQL",
+]
 
-response = requests.get('https://jobnet.dk/bff/FindJob/Search', params=params, headers=headers)
-data = response.json()
-ads = data["jobAds"]
-df = pd.DataFrame(ads)
-df.to_parquet(f'raw_data/JobIndex_{date.today()}.parquet')   
+for query in queries:
+    params = {
+        'resultsPerPage': '400',
+        'pageNumber': 1,
+        'orderType': 'BestMatch',
+        'kmRadius': '50',
+        'searchString': query,
+    }
+
+    response = requests.get('https://jobnet.dk/bff/FindJob/Search', params=params, headers=headers)
+    data = response.json()
+    ads = data["jobAds"]
+    df = pd.DataFrame(ads)
+    df["search_query"] = query
+    df.to_parquet(f'job_market_analysis/raw_data/Jobnet_{query}_{date.today()}.parquet')   
 
 
 
